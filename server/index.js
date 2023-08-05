@@ -32,6 +32,9 @@ app.all('/', function(req, res, next) {
 app.use(express.json())
 
 app.use(cors())
+app.get('/products/:id', function (req, res, next) {
+    res.json({msg: 'This is CORS-enabled for all origins!'})
+  })
 app.use('/api/auth',authRouter)
 app.use('/api/posts',postRouter)
 const PORT = process.env.PORT || 5000
