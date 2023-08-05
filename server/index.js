@@ -27,16 +27,19 @@ const app = express()
 app.use(express.json())
 
 app.use(cors())
-app.use(function(req,res,next){
-    res.header("Access-Control-Allow-Origin",'*');
-    res.header("Access-Control-Allow-Credentials",true)
-    res.header('Access-Control-Allow-Methods','GET,PUT,POST,DELETE,OPTIONS')
-    res.header("Access-Control-Allow-Headers",'Origin,X-Requested-With,Content-Type,Accept,content-type,application')
-    next()
-})
-app.get('/products/:id', function (req, res, next) {
-    res.json({msg: 'This is CORS-enabled for all origins!'})
-  })
+app.use(function(req, res, next) {
+    res.header("Access-Control-Allow-Origin", "https://tranquil-plains-60774-27bf2ca43e34.herokuapp.com/api"); // update to match the domain you will make the request from
+    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+    next();
+  });
+  
+  app.get('/', function(req, res, next) {
+    // Handle the get for this route
+  });
+  
+  app.post('/', function(req, res, next) {
+   // Handle the post for this route
+  });
 app.use('/api/auth',authRouter)
 app.use('/api/posts',postRouter)
 const PORT = process.env.PORT || 5000
