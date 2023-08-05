@@ -30,7 +30,13 @@ app.all('/', function(req, res, next) {
     res.header("Access-Control-Allow-Headers", "X-Requested-With");
     next()
   });
-app.use(cors())
+
+  const corsOptions ={
+    origin:'http://localhost:3000', 
+    credentials:true,            //access-control-allow-credentials:true
+    optionSuccessStatus:200
+}
+app.use(cors(corsOptions))
 app.use('/api/auth',authRouter)
 app.use('/api/posts',postRouter)
 const PORT = process.env.PORT || 5000
