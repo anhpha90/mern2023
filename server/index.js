@@ -5,21 +5,7 @@ const mongoose = require('mongoose')
 const authRouter = require('./routes/auth')
 const postRouter = require('./routes/post')
 
-app.use((req, res, next) => {
-    res.header("Access-Control-Allow-Origin", "*")
-    res.header(
-      "Access-Control-Allow-Headers",
-      "Origin, X-Requested, Content-Type, Accept Authorization"
-    )
-    if (req.method === "OPTIONS") {
-      res.header(
-        "Access-Control-Allow-Methods",
-        "POST, PUT, PATCH, GET, DELETE"
-      )
-      return res.status(200).json({})
-    }
-    next()
-  })
+
 const connectDB = async() => {
     try{
 await mongoose.connect(`mongodb+srv://anhpha90:Nhuquynh88@learnit.zx2ykbs.mongodb.net/?retryWrites=true&w=majority`,
@@ -38,6 +24,11 @@ process.exit(1)
 }
 connectDB()
 const app = express()
+app.all('/', function(req, res, next) {
+    res.header("Access-Control-Allow-Origin", "*");
+    res.header("Access-Control-Allow-Headers", "X-Requested-With");
+    next()
+  })
 app.use(express.json())
 const corsOptions = { origin: ["https://tranquil-plains-60774-27bf2ca43e34.herokuapp.com/", "https://tranquil-plains-60774-27bf2ca43e34.herokuapp.com/"], credentials: true }
 app.use(cors(corsOptions));
