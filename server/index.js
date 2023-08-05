@@ -39,7 +39,7 @@ process.exit(1)
 connectDB()
 const app = express()
 app.use(express.json())
-const corsOptions = { origin: ["https://heroku.com/apps/tranquil-plains-60774", "https://heroku.com/apps/tranquil-plains-60774"], credentials: true }
+const corsOptions = { origin: ["https://tranquil-plains-60774.herokuapp.com", "https://tranquil-plains-60774.herokuapp.com"], credentials: true }
 app.use(cors(corsOptions));
 app.use(cors())
 app.use('/api/auth',authRouter)
