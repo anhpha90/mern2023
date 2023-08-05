@@ -30,8 +30,7 @@ app.all('/', function(req, res, next) {
     next()
   })
 app.use(express.json())
-const corsOptions = { origin: ["https://tranquil-plains-60774-27bf2ca43e34.herokuapp.com/", "https://tranquil-plains-60774-27bf2ca43e34.herokuapp.com/"], credentials: true }
-app.use(cors(corsOptions));
+
 app.use(cors())
 app.use('/api/auth',authRouter)
 app.use('/api/posts',postRouter)
